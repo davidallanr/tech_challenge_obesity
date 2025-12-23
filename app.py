@@ -28,7 +28,6 @@ na **predição do nível de obesidade** com base em dados clínicos e comportam
 def train_model():
     df = pd.read_csv("data/Obesity.csv")
 
-    # Ajustes conforme dicionário de dados
     cols_round = ["FCVC", "NCP", "CH2O", "FAF", "TUE"]
     for col in cols_round:
         df[col] = df[col].round().astype(int)
@@ -46,20 +45,19 @@ def train_model():
         ]
     )
 
-model = Pipeline(
-    steps=[
-        ("preprocessor", preprocessor),
-        (
-            "classifier",
-            RandomForestClassifier(
-                n_estimators=200,
-                random_state=42,
-                class_weight="balanced"
+    model = Pipeline(
+        steps=[
+            ("preprocessor", preprocessor),
+            (
+                "classifier",
+                RandomForestClassifier(
+                    n_estimators=200,
+                    random_state=42,
+                    class_weight="balanced"
+                )
             )
-        )
-    ]
-)
-
+        ]
+    )
 
     model.fit(X, y)
     return model
