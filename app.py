@@ -104,7 +104,8 @@ with st.form("form_paciente"):
     col1, col2 = st.columns(2)
 
     with col1:
-        gender = st.selectbox("Gênero", ["Male", "Female"])
+        gender_pt = st.selectbox("Gênero", ["Masculino", "Feminino"])
+gender = "Male" if gender_pt == "Masculino" else "Female"
         age = st.number_input("Idade", min_value=14, max_value=80, value=25)
         height = st.number_input("Altura (m)", min_value=1.40, max_value=2.10, value=1.70)
         weight = st.number_input("Peso (kg)", min_value=40.0, max_value=200.0, value=70.0)
