@@ -46,14 +46,20 @@ def train_model():
         ]
     )
 
-    model = Pipeline(steps=[
+model = Pipeline(
+    steps=[
         ("preprocessor", preprocessor),
-        ("classifier", RandomForestClassifier(
-            n_estimators=200,
-            random_state=42,
-            class_weight="balanced"
-        ))
-    )
+        (
+            "classifier",
+            RandomForestClassifier(
+                n_estimators=200,
+                random_state=42,
+                class_weight="balanced"
+            )
+        )
+    ]
+)
+
 
     model.fit(X, y)
     return model
