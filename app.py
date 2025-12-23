@@ -20,6 +20,36 @@ st.markdown("""
 Este sistema utiliza **Machine Learning** para auxiliar profissionais da saúde  
 na **predição do nível de obesidade** com base em dados clínicos e comportamentais.
 """)
+st.markdown("---")
+st.header("📊 Visão Analítica – Insights sobre Obesidade")
+
+df_dashboard = pd.read_csv("data/Obesity.csv")
+
+st.subheader("Distribuição dos níveis de obesidade")
+st.bar_chart(df_dashboard["Obesity"].value_counts())
+
+st.subheader("Atividade física vs Obesidade")
+st.bar_chart(
+    df_dashboard.groupby("Obesity")["FAF"].mean()
+)
+
+st.subheader("Consumo de água vs Obesidade")
+st.bar_chart(
+    df_dashboard.groupby("Obesity")["CH2O"].mean()
+)
+
+st.subheader("Histórico familiar vs Obesidade")
+st.bar_chart(
+    df_dashboard.groupby("Obesity")["family_history"].apply(lambda x: (x == "yes").mean())
+)
+
+st.markdown("""
+### 🧠 Principais Insights:
+- Pessoas com **menor frequência de atividade física** tendem a níveis mais elevados de obesidade.
+- O **baixo consumo de água** está associado a maiores níveis de obesidade.
+- O **histórico familiar** é um fator relevante e recorrente nos níveis mais altos.
+- Há forte influência de **hábitos alimentares** no diagnóstico.
+""")
 
 # ===============================
 # TREINAMENTO DO MODELO
