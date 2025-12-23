@@ -21,7 +21,6 @@ na **predição do nível de obesidade** com base em dados clínicos e comportam
 # ===============================
 # CARREGAMENTO DO MODELO
 # ===============================
-@st.cache_resource
 def load_model():
     return joblib.load("model/modelo_obesidade.pkl")
 
